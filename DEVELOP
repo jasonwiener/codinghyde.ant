@@ -1,0 +1,76 @@
+Introduction
+==========
+This project uses a combination of virtualenv and zc.buildout to setup a
+contained development environment. It's designed so I can basically go to any
+of my computers, clone the upstream repository, source the bootstrap script,
+and begin working.
+
+
+Bootstrapping
+==========
+With virtualenv and zc.buildout:
+% source bootstrap
+% buildout
+
+With zc.buildout only:
+% python bootstrap.py -d
+% bin/buildout
+
+
+Web Resources
+==========
+Main project website and bug database is at (temporarily unavailable):
+http://www.codinghyde.org/projects/ant/
+
+Public GIT repository is at:
+http://github.com/codinghyde/codinghyde.ant/
+
+
+Release Checklist
+==========
+ * Clone upstream to clean directory
+ * Bootstrap environment
+ * Run pylint
+ * Run importchecker
+   % importchecker src
+ * Run pep8
+   % pep8 -r src --count --statistics
+ * Check version (setup.py, project's __init__.py)
+ * Run test suite and check test coverage
+   % nosetests --with-coverage --cover-inclusive --cover-erase
+ * Check bug database for open issues/bugs
+ * Build documentation
+ * Check documentation (coverage, grammar, contents, etc)
+ * Update CHANGES
+ * Update copyright statements if new year
+ * Update setup.py
+ * Create distribution bundles
+   % buildout setup . sdist bdist bdist_egg
+ * Check dist/* files (no plain text root passwords, all files present, do
+   they work in a separate virtualenv with pip? do tests still pass?)
+ * Upload to PyPI
+   % buildout setup . register upload
+ * Check package page in PyPI (readme, download links)
+ * Re-test release in a clean environment, installing from the cheeseshop
+ * Tag and commit release
+ * If next version is a major release (current 1.8, next 2.0), create a new
+   branch and switch to it
+ * Bump version (if 0.1, then move to, say, 0.2.a1) (setup.py and project's
+   __init__.py)
+ * Commit version bump
+ * Push upstream
+ * Upload dist files to main website
+ * Upload documentation to main web site
+ * Announce release on main website
+
+
+Release Notes
+==========
+If releasing anything but a final version, skip registering and uploading to
+the cheeseshop.
+
+If releasing a .devX version, some steps may be skipped from the release
+checklist. In particular, .devX versions should be treated mostly as an
+internal thing and thus, should generally not be published nor uploaded to the
+main website.
+

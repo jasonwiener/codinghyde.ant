@@ -1,0 +1,6 @@
+#!/bin/sh
+python virtualenv.py --no-site-packages --distribute --prompt=\[codinghyde.ant\] .
+rm distribute-*.tar.gz
+source bin/activate
+python bootstrap.py -d
+
