@@ -38,6 +38,7 @@ Release Checklist
  * Check version (setup.py, project's __init__.py)
  * Run test suite and check test coverage
    % nosetests --with-coverage --cover-inclusive --cover-erase
+ * Freeze dependencies' version numbers in buildout.cfg and setup.py
  * Check bug database for open issues/bugs
  * Build documentation
  * Check documentation (coverage, grammar, contents, etc)
