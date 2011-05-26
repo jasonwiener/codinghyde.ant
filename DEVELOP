@@ -35,7 +35,7 @@ Release Checklist
    % importchecker src
  * Run pep8
    % pep8 -r src --count --statistics
- * Check version (setup.py, project's __init__.py)
+ * Check version (setup.py, project's __init__.py, docs)
  * Run test suite and check test coverage
    % nosetests --with-coverage --cover-inclusive --cover-erase
  * Freeze dependencies' version numbers in buildout.cfg and setup.py
@@ -56,8 +56,8 @@ Release Checklist
  * Tag and commit release
  * If next version is a major release (current 1.8, next 2.0), create a new
    branch and switch to it
- * Bump version (if 0.1, then move to, say, 0.2.a1) (setup.py and project's
-   __init__.py)
+ * Bump version (if 0.1, then move to, say, 0.2.a1) (setup.py, project's
+   __init__.py, and docs/*)
  * Commit version bump
  * Push upstream
  * Upload dist files to main website
