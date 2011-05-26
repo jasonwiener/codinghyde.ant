@@ -5,6 +5,9 @@ contained development environment. It's designed so I can basically go to any
 of my computers, clone the upstream repository, source the bootstrap script,
 and begin working.
 
+Also, git-flow is being used to manage the general workflow of the repository,
+so please install it and stick with it.
+
 
 Bootstrapping
 ==========
@@ -21,6 +24,9 @@ Web Resources
 ==========
 Main project website and bug database is at (temporarily unavailable):
 http://www.codinghyde.org/projects/ant/
+
+Project documentation (Sphinx) is at (temporarily unavailable):
+http://docs.codinghyde.org/projects/ant/
 
 Public GIT repository is at:
 http://github.com/codinghyde/codinghyde.ant/
