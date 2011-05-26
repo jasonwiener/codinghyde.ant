@@ -3,6 +3,8 @@
 *.swp
 .installed.cfg
 src/.coverage
+docs/build
+docs/source/.buildinfo
 dist
 build
 bin
