@@ -27,34 +27,58 @@ import unittest
 
 from codinghyde.ant.driver import *
 
-class DriverTest(unittest.TestCase):
-    def test_isOpen(self):
+class DummyDriver(Driver):
+    def _open(self):
         pass
+
+    def _close(self):
+        pass
+
+    def _read(self, count):
+        return '\x00' * count
+
+    def _write(self, data):
+        return len(data)
+
+class DriverTest(unittest.TestCase):
+    def setUp(self):
+        self.driver = DummyDriver('superdrive')
+
+    def tearDown(self):
+        pass
+
+    def test_isOpen(self):
+        self.assertFalse(self.driver.isOpen())
+        self.driver.open()
+        self.assertTrue(self.driver.isOpen())
+        self.driver.close()
+        self.assertFalse(self.driver.isOpen())
 
     def test_open(self):
-        pass
+        self.driver.open()
+        self.assertRaises(DriverException, self.driver.open)
+        self.driver.close()
 
     def test_close(self):
-        pass
+        pass    # Nothing to test for
 
     def test_read(self):
-        pass
+        self.assertFalse(self.driver.isOpen())
+        self.assertRaises(DriverException, self.driver.read, 1)
+        self.driver.open()
+        self.assertEqual(len(self.driver.read(5)), 5)
+        self.assertRaises(DriverException, self.driver.read, -1)
+        self.assertRaises(DriverException, self.driver.read, 0)
+        self.driver.close()
 
     def test_write(self):
-        pass
+        self.assertRaises(DriverException, self.driver.write, '\xFF')
+        self.driver.open()
+        self.assertRaises(DriverException, self.driver.write, '')
+        self.assertEquals(self.driver.write('\xFF' * 10), 10)
+        self.driver.close()
 
-    def test__open(self):
-        pass
-
-    def test__close(self):
-        pass
-
-    def test__read(self):
-        pass
-
-    def test__write(self):
-        pass
-
+# How do you even test this without hardware?
 class USB1DriverTest(unittest.TestCase):
     def _open(self):
         pass

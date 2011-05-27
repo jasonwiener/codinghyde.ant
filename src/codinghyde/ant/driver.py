@@ -28,7 +28,7 @@ import serial
 from codinghyde.ant.exceptions import DriverException
 
 class Driver(object):
-    def __init__(self, device, debug):
+    def __init__(self, device, debug=False):
         self.device = device
         self.debug = debug
         self.is_open = False
@@ -53,6 +53,8 @@ class Driver(object):
     def read(self, count):
         if not self.isOpen():
             raise DriverException("Could not read from device (not open).")
+        if count <= 0:
+            raise DriverException("Could not read from device (zero request).")
 
         data = self._read(count)
 
@@ -64,6 +66,8 @@ class Driver(object):
     def write(self, data):
         if not self.isOpen():
             raise DriverException("Could not write to device (not open).")
+        if len(data) <= 0:
+            raise DriverException("Could not write to device (no data).")
 
         if self.debug:
             self._dump(data, 'WRITE')
