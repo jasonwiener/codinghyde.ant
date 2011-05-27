@@ -80,12 +80,15 @@ class Driver(object):
 
         print '========== [{0}] =========='.format(title)
 
+        length = 8
         line = 0
         while data:
-            row = data[:8]
-            data = data[8:]
+            row = data[:length]
+            data = data[length:]
             hex_data = ['%02X' % ord(byte) for byte in row]
             print '%04X' % line, ' '.join(hex_data)
+
+        print ''
 
     def _open(self):
         raise DriverException("Not Implemented")
