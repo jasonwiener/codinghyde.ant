@@ -100,9 +100,13 @@ class Driver(object):
         raise DriverException("Not Implemented")
 
 class USB1Driver(Driver):
+    def __init__(self, device, baud_rate=115200, debug=False):
+        Driver.__init__(self, device, debug)
+        self.baud = baud_rate
+
     def _open(self):
         try:
-            dev = serial.Serial(self.device, 115200)
+            dev = serial.Serial(self.device, self.baud)
         except serial.SerialException, e:
             raise DriverException(str(e))
 
